@@ -1,0 +1,36 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example
+spec:
+  instances: 1
+
+  plugins:
+  - name: objstore-backup.dougkirkley
+    parameters:
+      pvc: backups-pvc
+      image: plugin-objstore-backup:latest
+      imagePullPolicy: Never
+      secretName: kopia-password
+      secretKey: password
+
+  tablespaces:
+    - name: atablespace
+      storage:
+        size: 1Gi
+        storageClass: standard
+    - name: another_tablespace
+      storage:
+        size: 2Gi
+        storageClass: standard
+
+  storage:
+    size: 1Gi
+---
+apiVersion: v1
+data:
+  password: dGhpc2lzYXJhbmRvbXBhc3N3b3Jk
+kind: Secret
+metadata:
+  creationTimestamp: null
+  name: kopia-password
