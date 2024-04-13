@@ -5,7 +5,7 @@ import (
 
 	"github.com/cloudnative-pg/cnpg-i/pkg/identity"
 
-	"github.com/cloudnative-pg/plugin-pvc-backup/pkg/metadata"
+	"github.com/dougkirkley/plugin-objstore-backup/pkg/metadata"
 )
 
 // Identity is the implementation of the identity service
